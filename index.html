@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Text Detectors</title>
+</head>
+<body>
+    <h2>AI Text Detector</h2>
+    <textarea id="inputText" rows="5" cols="50"></textarea><br>
+    <button onclick="checkAIText()">Check AI Text</button>
+    <p id="result"></p>
+
+    <script>
+        async function checkAIText() {
+            let text = document.getElementById("inputText").value;
+            let response = await fetch("https://your-api-url.onrender.com/check", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text: text })
+            });
+            let data = await response.json();
+            document.getElementById("result").innerText = data.result;
+        }
+    </script>
+</body>
+</html>
